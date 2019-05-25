@@ -1,0 +1,116 @@
+﻿@page
+@using Microsoft.AspNetCore.Identity
+@using PacmanWebb.Areas.Identity.Pages.Account;
+
+@inject SignInManager<PacmanUser> signInManager
+@inject UserManager<PacmanUser> UserManager
+<link href="~/css/Style.css" rel="stylesheet" />
+
+<div id="images">
+    <img id="DOWNpacman0" src="~/images/pacman/DOWN/pacman0.png" />
+    <img id="DOWNpacman1" src="~/images/pacman/DOWN/pacman1.png" />
+    <img id="DOWNpacman2" src="~/images/pacman/DOWN/pacman2.png" />
+    <img id="DOWNpacman3" src="~/images/pacman/DOWN/sprite_pacman3.png" />
+    <img id="DOWNpacman4" src="~/images/pacman/DOWN/sprite_pacman4.png" />
+    <img id="DOWNpacman5" src="~/images/pacman/DOWN/sprite_pacman5.png" />
+    <img id="DOWNpacman6" src="~/images/pacman/DOWN/pacman6.png" />
+    <img id="DOWNpacman7" src="~/images/pacman/DOWN/pacman7.png" />
+
+    <img id="UPpacman0" src="~/images/pacman/UP/pacman0.png" />
+    <img id="UPpacman1" src="~/images/pacman/UP/pacman1.png" />
+    <img id="UPpacman2" src="~/images/pacman/UP/pacman2.png" />
+    <img id="UPpacman3" src="~/images/pacman/UP/sprite_pacman3.png" />
+    <img id="UPpacman4" src="~/images/pacman/UP/sprite_pacman4.png" />
+    <img id="UPpacman5" src="~/images/pacman/UP/sprite_pacman5.png" />
+    <img id="UPpacman6" src="~/images/pacman/UP/pacman6.png" />
+    <img id="UPpacman7" src="~/images/pacman/UP/pacman7.png" />
+
+    <img id="LEFTpacman0" src="~/images/pacman/LEFT/pacman0.png" />
+    <img id="LEFTpacman1" src="~/images/pacman/LEFT/pacman1.png" />
+    <img id="LEFTpacman2" src="~/images/pacman/LEFT/pacman2.png" />
+    <img id="LEFTpacman3" src="~/images/pacman/LEFT/sprite_pacman3.png" />
+    <img id="LEFTpacman4" src="~/images/pacman/LEFT/sprite_pacman4.png" />
+    <img id="LEFTpacman5" src="~/images/pacman/LEFT/sprite_pacman5.png" />
+    <img id="LEFTpacman6" src="~/images/pacman/LEFT/pacman6.png" />
+    <img id="LEFTpacman7" src="~/images/pacman/LEFT/pacman7.png" />
+
+    <img id="RIGHTpacman0" src="~/images/pacman/RIGHT/pacman0.png" />
+    <img id="RIGHTpacman1" src="~/images/pacman/RIGHT/pacman1.png" />
+    <img id="RIGHTpacman2" src="~/images/pacman/RIGHT/pacman2.png" />
+    <img id="RIGHTpacman3" src="~/images/pacman/RIGHT/sprite_pacman3.png" />
+    <img id="RIGHTpacman4" src="~/images/pacman/RIGHT/sprite_pacman4.png" />
+    <img id="RIGHTpacman5" src="~/images/pacman/RIGHT/sprite_pacman5.png" />
+    <img id="RIGHTpacman6" src="~/images/pacman/RIGHT/pacman6.png" />
+    <img id="RIGHTpacman7" src="~/images/pacman/RIGHT/pacman7.png" />
+
+    <img id="bashfull0" src="~/images/bashfull/bashfull0.png" />
+    <img id="bashfull1" src="~/images/bashfull/bashfull1.png" />
+    <img id="shadow0" src="~/images/shadow/shadow0.png" />
+    <img id="shadow1" src="~/images/shadow/shadow1.png" />
+    <img id="speedy0" src="~/images/speedy/sprite_0.png" />
+    <img id="speedy1" src="~/images/speedy/sprite_1.png" />
+    <img id="pokey0" src="~/images/pokey/pokey0.png" />
+    <img id="pokey1" src="~/images/pokey/pokey1.png" />
+    <img id="scared0" src="~/images/pacman/scared_0.png" />
+    <img id="scared1" src="~/images/pacman/scared_1.png" />
+</div>
+<span id="direction" style="display:none;">what</span>
+<canvas class="canvas" id="MapCanvas" width="670" height="740"></canvas>
+<canvas class="canvas" id="CoinCanvas" width="670" height="740"></canvas>
+<canvas class="canvas" id="canvas2" width="670" height="740"></canvas>
+<div id="userHub" style="float:left;left:30%; margin:auto; display:none">
+    <span class="gameText">Lives:</span>
+    <img id="pacmanHealth0" src="~/images/pacman/RIGHT/pacman2.png" />
+    <img id="pacmanHealth1" src="~/images/pacman/RIGHT/pacman2.png" />
+    <img id="pacmanHealth2" src="~/images/pacman/RIGHT/pacman2.png" />
+    <span class="gameText">Score:<span id="hubScore" class="gameText">0</span></span>
+</div>
+<div id="Menu">
+    <canvas class="canvas" id="MenuCanvas" width="615" height="680"></canvas>
+    <div class="MenuButtons">
+        <ul style="align-content:center">
+            @if (signInManager.IsSignedIn(User))
+            {
+                <li><span class="gameText">Hello  </span><span class="gameText" id="accountName">@(User.FindFirst("GivenName").Value)</span></li>
+            }
+            <li><input type="button" id="start" class="menu" value="Start" /></li>
+            @if (signInManager.IsSignedIn(User))
+            {
+                <li><input type="text" id="nameInput" value="@(User.FindFirst("GivenName").Value)" style="display:none; bottom:30px; width: 200px" /></li>
+            }
+            else
+            {
+                <li><input type="text" id="nameInput" value="PlayerName" style="display:none; bottom:30px; width: 200px" /></li>
+            }
+            <li><input type="button" id="watch" class="menu" value="WatchGame" /></li>
+            <li><input type="text" id="watchNameInput" value="Player Name" style="display:none; bottom:30px; width: 200px" /></li>
+            <li><input type="button" id="scores" class="menu" value="Highscores" onclick="window.location.href='/players/indexPlayer'" style=" top:60pt" /></li>
+            <li><a asp-area="Identity" class="menu" asp-page="/Account/Register">Register</a></li>
+            <li><a asp-area="Identity" class="menu" asp-page="/Account/Login">Login</a></li>
+        </ul>
+    </div>
+</div>
+<div id="MapSelect" class="MenuButtons" style="display:none; top:0;">
+    <ul style="align-content:center">
+        <li><span class="gameText" style="width:200pt;text-align:center">Maps</span></li>
+        <li>
+            <img id="map1" style="width:170pt; height:auto; padding:7px;" class="menu" src="~/images/maps/Screenshot_3.png" />
+        </li>
+        <li>
+            <img id="map2" style="width:170pt; height:auto;padding:7px;" class="menu" src="~/images/maps/Screenshot_10.png" />
+        </li>
+        <li>
+            <img id="map3" style="width:170pt; height:auto; padding:7px;" class="menu" src="~/images/maps/Screenshot_2.png" />
+        </li>
+    </ul>
+</div>
+<div id="restartMenu" class="MenuButtons" style="display:none; position:absolute">
+    <ul style="align-content:center">
+        <span class="menu" style="font-size:20px">Your Score:<span id="ScoreResult">0</span></span>
+        <li><input type="button" id="restart" class="menu" value="Restart" /></li>
+        <li><input type="button" id="exit" class="menu" style="top:0px" value="Exit" /></li>
+    </ul>
+</div>
+<script src="~/lib/signalr/signalr.js"></script>
+<script src="~/js/mapPrint.js"></script>
+<script src="~/js/Menu.js"></script>

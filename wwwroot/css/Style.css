@@ -1,0 +1,80 @@
+﻿
+@font-face {
+    font-family: 'Pixel';
+
+    src: url('../fonts/subwt___.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'tech';
+    src: url('../fonts/sharetechmono-regular.ttf') format('truetype');
+}
+body {
+    background-color: #3a3a3a
+}
+
+ul{
+    list-style-type:none;
+}
+
+.highscoresTable {
+    color: gold;
+    border: 1px solid gold;
+    font-family: 'Subway Ticker';
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+}
+
+#images {
+    display: none;
+    visibility: hidden;
+}
+
+.canvas {
+    left: 0;
+    right: 0;
+    margin: auto;
+    position: absolute;
+}
+
+
+.MenuButtons {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+}
+
+.menu {
+    background-color: #161616;
+    width: 200px;
+    border: none;
+    color: gold;
+    font-family: 'Subway Ticker';
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    margin: auto;
+    float:left;
+}
+
+.gameText {
+    color: gold;
+    font-family: 'Subway Ticker';
+    font-size: 20px;
+}
+
+.menuButton {
+     background-color: #161616;
+    border: none;
+    color: gold;
+    font-family: 'Subway Ticker';
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 30px;
+    
+    margin: auto;   
+}

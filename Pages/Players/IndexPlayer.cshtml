@@ -1,0 +1,56 @@
+﻿@page
+@model PacmanWebb.Pages.Players.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    string searhedPlayer = "";
+}
+<link href="~/css/Style.css" rel="stylesheet" />
+<div style="align-content:center; position: absolute; left:300pt;" class="menu">
+    <input type="button" class="menu" style="background-color:#3a3a3a" value="Back" onclick="window.location.href='/'" />
+    <form class="menu" style="font-size:16px; top:20px;background-color:#3a3a3a">
+        <p>
+            Name: <input type="text"style="background-color:#3a3a3a; color:white;" name="SearchString">
+            <input type="submit" style="background-color:#3a3a3a"value="Refresh" class="menu" />
+        </p>
+    </form>
+</div>
+
+<table class="highscoresTable" align="center" style="position:relative; left:500pt">
+    <thead class="highscoresTable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayerModel[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PlayerModel[0].Score)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.PlayerModel)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Score)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<script type="text/javascript">
+    document.getElementById("Go").addEventListener("click", event => {
+         "@searhedPlayer" = document.getElementById("searchedName").value;
+    })
+    document.getElementById("searchedName")
+        .addEventListener("keyup", function (event) {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+               "@searhedPlayer" = document.getElementById("searchedName").value;
+            }
+        });
+</script>
